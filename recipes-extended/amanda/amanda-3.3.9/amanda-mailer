@@ -1,0 +1,18 @@
+#! /bin/sh
+
+# 
+# A simple mailer, sufficient for Amanda to be able to
+# send reports.  Since the Yocto/OE-core mailer is very
+# minimal (msmtp), a default configuration /etc/msmtp
+# will need to be set up as well.
+#
+# Assumed to be of the form "-s 'Subject' to <MSG"
+
+# Fill in the necessary RFC822 email headers for a well-behaved message
+echo "Subject: $2" >/tmp/MSG.$$
+echo "To: $3" >>/tmp/MSG.$$
+echo "From: `whoami`@`hostname`" >>/tmp/MSG.$$
+echo "Date: `date -R`" >>/tmp/MSG.$$
+echo "" >>/tmp/MSG.$$
+cat - >>/tmp/MSG.$$
+sendmail --from=`whoami`@`hostname` $3 </tmp/MSG.$$

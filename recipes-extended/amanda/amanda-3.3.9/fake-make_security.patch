@@ -1,0 +1,54 @@
+Index: amanda-3.3.9/common-src/Makefile.am
+===================================================================
+--- amanda-3.3.9.orig/common-src/Makefile.am
++++ amanda-3.3.9/common-src/Makefile.am
+@@ -170,7 +170,7 @@ version.c: genversion$(EXEEXT)
+ BUILT_SOURCES += genversion.h version.c
+ 
+ amanda-security.conf: make_security_file
+-	./make_security_file
++	cp fake-security.conf amanda-security.conf
+ 
+ etcamandadir = ${CONFIG_DIR}
+ etcamanda_FILE = amanda-security.conf
+Index: amanda-3.3.9/common-src/fake-security.conf
+===================================================================
+--- /dev/null
++++ amanda-3.3.9/common-src/fake-security.conf
+@@ -0,0 +1,36 @@
++############################################################
++# /etc/amanda-security.conf                                #
++#                                                          #
++# See: man amanda-security.conf                            #
++#                                                          #
++# This file must be installed at /etc/amanda-security.conf #
++#                                                          #
++# It list all executables amanda can execute as root.      #
++# This file must contains realpath to executable, with     #
++# all symbolic links resolved.                             #
++# You can use the 'realpath' command to find them.         #
++#                                                          #
++# It list program and a symbolic name for the program      #
++# Followed by the realpath of the binary                   #
++#                                                          #
++# Uncomment and edit the following lines to let Amanda to  #
++# use customized system commands.  If multiple PATH is     #
++# necessary, please put them in different lines.           #
++# e.g.:                                                    #
++# amgtar:GNUTAR_PATH=/usr/bin/tar                          #
++# amgtar:GNUTAR_PATH=/usr/bin/tar-1.28                     #
++#                                                          #
++# If a program and symbolic name is not listed, then the   #
++# configured binary is allowed to be run as root.          #
++# You can find the configured binary with amgetconf        #
++#     amgetconf build.gnutar_path                          #
++#     amgetconf build.star_path                            #
++#     amgetconf build.bsdtar_path                          #
++#                                                          #
++############################################################
++runtar:gnutar_path=/bin/tar.tar
++amgtar:gnutar_path=/bin/tar.tar
++#amstar:star_path=/usr/bin/star
++#ambsdtar:bsdtar_path=/usr/bin/bsdtar
++
++#restore_by_amanda_user=no
