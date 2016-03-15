@@ -128,6 +128,22 @@ Only in /etc: amanda/demo/tapelist.lock
 
 ```
 
-Sadly, at least on 32 bit **ARM** and **PowerPC** targets, **amanda** fails when
-built using **perl-5.22.1**.  Reverting to **perl-5.20.0** lets **amanda** work
-correctly on those targets.
+## Test results
+
+Sadly, at many targets, **perl** and/or **amanda** fail to run properly.
+This was tested using **amanda-3.3.9** (the latest available) and either
+**perl-5.20.0** (poky/2015-04-20) or **perl-5.22.1** (poky/2016-03-10).
+
+| target | **perl-5.20.0** | **perl-5.22.1** |
+|--------|-----------------|-----------------|
+| mips   | **OK** **OK**   | **FAIL**  **OK** |
+| mips64 | **FAIL** **FAIL**   | **FAIL**  **OK** |
+
+## Bug?  Where/how to file?
+
+Should I file a bug on this?
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
