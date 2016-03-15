@@ -146,6 +146,14 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 | p1022ds    | **OK**   | **OK**             | **FAIL**   | **OK**             |
 | beaglebone    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
 
++ **OK** means the activity was 100% correct
++ **FAIL/SV** means activity failed because of segmentation violation
++ **FAIL/Short Data** means `amdump demo` seemed to run correctly, but not all of the data made it into the final dump.  In this case, there will be some files left over in `/var/backups/amanda/demo/holding` and the `tar` restore will fail.
+
+
 ## Bug?  Where/how to file?
 
 Should I file a bug on this?
+
+The interesting thing is that these programs **amanda** and **perl** are widely used and available in many distributions.  I have tested these combinations on my desktop as well as on my target hardware running **Debian** (**ARM**) or **Ubuntu**
+(**X86-64**) and they always work correctly.
