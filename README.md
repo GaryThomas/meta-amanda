@@ -130,24 +130,24 @@ Only in /etc: amanda/demo/tapelist.lock
 
 ## Test results
 
-Sadly, at many targets, **perl** and/or **amanda** fail to run properly.
+Sadly, on many targets, **perl** and/or **amanda** fail to run properly.
 This was tested using **amanda-3.3.9** (the latest available) and either
 **perl-5.20.0** (poky/2015-04-20) or **perl-5.22.1** (poky/2016-03-10).
 
 | target | **amanda** | **perl-5.20.0 -V** | **amanda** | **perl-5.22.1 -V** |
 |--------|------------|--------------------|------------|--------------------|
-| qemumips   | **OK**     | **OK**             | **FAIL**   | **OK**             |
-| qemumips64 | **FAIL/Short Data**   | **FAIL**           | **FAIL/Short Data**   | **OK**             |
-| qemux86    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
-| qemux86-64 | **FAIL**   | **FAIL**           | **OK**     | **OK**             |
-| qemuarm    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
+| qemumips   | **OK**     | **OK**             | **FAIL/SV**   | **OK**             |
+| qemumips64 | **FAIL/Short Data**   | **FAIL/SV**           | **FAIL/Short Data**   | **OK**             |
+| qemux86    | **FAIL/SV**   | **FAIL/SV**           | **FAIL/SV**   | **OK**             |
+| qemux86-64 | **FAIL/SV**   | **FAIL/SV**           | **OK**     | **OK**             |
+| qemuarm    | **FAIL/SV**   | **FAIL/SV**           | **FAIL/SV**   | **OK**             |
 | qemuarm64  | **FAIL/Short Data**   | **OK**             | **FAIL/Short Data**   | **OK**             |
-| qemuppc    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
-| genericx86    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
-| genericx86-64    | **FAIL**   | **FAIL**           | **FAIL**   | **FAIL**             |
-| i.MX6    | **OK**   | **OK**           | **FAIL**   | **OK**             |
-| p1022ds    | **OK**   | **OK**             | **FAIL**   | **OK**             |
-| beaglebone    | **OK**   | **OK**             | **FAIL**   | **OK**             |
+| qemuppc    | **FAIL/SV**   | **OK**             | **FAIL/??**   | **OK**             |
+| genericx86    | **FAIL/SV**   | **FAIL/SV**           | **FAIL/SV**   | **OK**             |
+| genericx86-64    | **FAIL/SV**   | **FAIL/SV**           | **FAIL/SV**   | **FAIL/SV**             |
+| i.MX6    | **OK**   | **OK**           | **FAIL/SV**   | **OK**             |
+| p1022ds    | **OK**   | **OK**             | **FAIL/SV**   | **OK**             |
+| beaglebone    | **OK**   | **OK**             | **FAIL/SV**   | **OK**             |
 
 + **OK** means the activity was 100% correct
 + **FAIL/SV** means activity failed because of segmentation violation
@@ -159,4 +159,4 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 Should I file a bug on this?
 
 The interesting thing is that these programs (**amanda** and **perl**) are widely used and available in many distributions.  I have tested these combinations on my desktop as well as on my target hardware running **Debian** (**ARM**) or **Ubuntu**
-(**X86-64**) and they always work correctly, with either version of **perl**.
+(**X86-64**) and they always work correctly, with either version of **perl**.  The **OpenEmbedded** versions of these programs are built without any special patches and are patched to the same condition as **Debian** as far as I can tell (i.e. there are no *important* patches missing from the **OE** builds)
