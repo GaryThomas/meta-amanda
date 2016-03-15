@@ -136,15 +136,18 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 
 | target | **amanda** | **perl-5.20.0 -V** | **amanda** | **perl-5.22.1 -V** |
 |--------|------------|--------------------|------------|--------------------|
-| mips   | **OK**     | **OK**             | **FAIL**   | **OK**             |
-| mips64 | **FAIL/Short Data**   | **FAIL**           | **FAIL/Short Data**   | **OK**             |
-| x86    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
-| x86-64 | **FAIL**   | **FAIL**           | **OK**     | **OK**             |
-| arm    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
-| arm64  | **FAIL/Short Data**   | **OK**             | **FAIL/Short Data**   | **OK**             |
-| ppc    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
+| qemumips   | **OK**     | **OK**             | **FAIL**   | **OK**             |
+| qemumips64 | **FAIL/Short Data**   | **FAIL**           | **FAIL/Short Data**   | **OK**             |
+| qemux86    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
+| qemux86-64 | **FAIL**   | **FAIL**           | **OK**     | **OK**             |
+| qemuarm    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
+| qemuarm64  | **FAIL/Short Data**   | **OK**             | **FAIL/Short Data**   | **OK**             |
+| qemuppc    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
+| genericx86    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
+| genericx86-64    | **FAIL**   | **FAIL**           | **FAIL**   | **FAIL**             |
+| i.MX6    | **OK**   | **OK**           | **FAIL**   | **OK**             |
 | p1022ds    | **OK**   | **OK**             | **FAIL**   | **OK**             |
-| beaglebone    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
+| beaglebone    | **OK**   | **OK**             | **FAIL**   | **OK**             |
 
 + **OK** means the activity was 100% correct
 + **FAIL/SV** means activity failed because of segmentation violation
@@ -155,5 +158,5 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 
 Should I file a bug on this?
 
-The interesting thing is that these programs **amanda** and **perl** are widely used and available in many distributions.  I have tested these combinations on my desktop as well as on my target hardware running **Debian** (**ARM**) or **Ubuntu**
-(**X86-64**) and they always work correctly.
+The interesting thing is that these programs (**amanda** and **perl**) are widely used and available in many distributions.  I have tested these combinations on my desktop as well as on my target hardware running **Debian** (**ARM**) or **Ubuntu**
+(**X86-64**) and they always work correctly, with either version of **perl**.
