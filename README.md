@@ -137,11 +137,11 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 | target | **amanda** | **perl-5.20.0 -V** | **amanda** | **perl-5.22.1 -V** |
 |--------|------------|--------------------|------------|--------------------|
 | mips   | **OK**     | **OK**             | **FAIL**   | **OK**             |
-| mips64 | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
+| mips64 | **FAIL/Short Data**   | **FAIL**           | **FAIL/Short Data**   | **OK**             |
 | x86    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
 | x86-64 | **FAIL**   | **FAIL**           | **OK**     | **OK**             |
 | arm    | **FAIL**   | **FAIL**           | **FAIL**   | **OK**             |
-| arm64  | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
+| arm64  | **FAIL/Short Data**   | **OK**             | **FAIL/Short Data**   | **OK**             |
 | ppc    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
 | p1022ds    | **OK**   | **OK**             | **FAIL**   | **OK**             |
 | beaglebone    | **FAIL**   | **OK**             | **FAIL**   | **OK**             |
