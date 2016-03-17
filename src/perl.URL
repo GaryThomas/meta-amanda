@@ -1,0 +1,6 @@
+# This version of perl came from
+  http://archive.ubuntu.com/ubuntu/pool/main/p/perl/perl_5.22.1-9.dsc
+  http://archive.ubuntu.com/ubuntu/pool/main/p/perl/perl_5.22.1.orig.tar.xz
+  http://archive.ubuntu.com/ubuntu/pool/main/p/perl/perl_5.22.1-9.debian.tar.xz
+
+# Note: the actual perl tree is 5.22.0
