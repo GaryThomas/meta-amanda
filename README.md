@@ -144,7 +144,7 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 | qemuarm64  | **FAIL/Short Data**   | **OK**             | **FAIL/Short Data**   | **OK**             |
 | qemuppc    | **FAIL/SV**   | **OK**             | **FAIL/??**   | **OK**             |
 | genericx86    | **FAIL/SV**   | **FAIL/SV**           | **FAIL/SV**   | **OK**             |
-| genericx86-64    | **FAIL/SV**   | **FAIL/SV**           | **FAIL/SV**   | **FAIL/SV**             |
+| genericx86-64    | **FAIL/SV**   | **FAIL/SV**           | **OK**   | **OK**             |
 | i.MX6    | **OK**   | **OK**           | **FAIL/SV**   | **OK**             |
 | p1022ds    | **OK**   | **OK**             | **FAIL/SV**   | **OK**             |
 | beaglebone    | **OK**   | **OK**             | **FAIL/SV**   | **OK**             |
@@ -160,3 +160,5 @@ Should I file a bug on this?
 
 The interesting thing is that these programs (**amanda** and **perl**) are widely used and available in many distributions.  I have tested these combinations on my desktop as well as on my target hardware running **Debian** (**ARM**) or **Ubuntu**
 (**X86-64**) and they always work correctly, with either version of **perl**.  The **OpenEmbedded** versions of these programs are built without any special patches and are patched to the same condition as **Debian** as far as I can tell (i.e. there are no *important* patches missing from the **OE** builds)
+
+I have built **amanda-3.3.9** and **perl-5.22.0** 100% from scratch natively on my i.MX6 target and it works perfectly.  This was using **amanda-3.3.9** unpatched and **perl-5.22.0** with the **Debian/Ubuntu** patches applied as they would be on a desktop version.  The sources used as well as the script used to configure the packages are in **src** in this repo.
