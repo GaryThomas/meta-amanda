@@ -1,0 +1,35 @@
+#! /bin/sh
+
+./configure \
+--prefix=/usr \
+--bindir=/usr/bin \
+--sbindir=/usr/sbin \
+--sysconfdir=/etc \
+--sharedstatedir=/com \
+--localstatedir=/var \
+--libdir=/usr/lib \
+--libexecdir=/usr/lib \
+--includedir=/usr/include \
+--oldincludedir=/usr/include \
+--infodir=/usr/share/info \
+--mandir=/usr/share/man \
+--disable-silent-rules \
+--with-amperldir=/usr/lib/perl/5.22.1 \
+--with-user=amandabackup \
+--with-group=amandabackup \
+--with-amdatadir=/var/amanda/lib \
+--with-gnutar=/bin/tar \
+--with-gnutar-listdir=/var/amanda/lib/gnutar-lists \
+--with-index-server=localhost \
+--with-tape-server=localhost \
+--with-fqdn \
+--without-bsd-security \
+--with-bsdtcp-security \
+--without-bsdudp-security \
+--with-ssh-security \
+--with-libcurl=no \
+--with-debugging=/var/amanda/log \
+--with-assertions \
+--with-security-file=/etc/amanda-security.conf \
+--disable-dependency-tracking \
+--enable-nls
