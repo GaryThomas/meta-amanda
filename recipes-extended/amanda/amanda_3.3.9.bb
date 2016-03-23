@@ -12,6 +12,7 @@ SRC_URI = " \
 	http://downloads.sourceforge.net/project/amanda/amanda%20-%20stable/${PV}/amanda-${PV}.tar.gz \
 	file://fake-version.patch \
 	file://fake-make_security.patch \
+	file://fix-perl-inc.patch \
 	file://demo/amanda.conf \
 	file://demo/disklist \
 	file://demo/ssh-key \
@@ -25,6 +26,8 @@ SRC_URI[sha256sum] = "2520b95ca96f1d521d582b7c94bd631486e7029eda1de8e1887d74b323
 
 inherit autotools-brokensep gettext cpan-base perlnative
 export PERL_LIB = "${libdir}/perl/${@get_perl_version(d)}"
+# Use correct includes when building swig interface files
+export PERL_INC = "-I${STAGING_LIBDIR}${PERL_OWN_DIR}/perl/${@get_perl_version(d)}/CORE"
 
 # Override configuration to match common distributions (Fedora, Debian)
 libexecdir = "/usr/libexec"
@@ -65,6 +68,7 @@ CONFIGUREOPTS = " --build=${BUILD_SYS} \
                   ${CONFIGUREOPT_DEPTRACK}"
 
 CACHED_CONFIGUREVARS += "ac_cv_path_SORT=${bindir}/sort"
+#EXTRA_OECONF += "${@bb.utils.contains('DISTRO_FEATURES', 'largefile', 'ac_cv_sizeof_off_t=8 ac_cv_sys_largefile_source=yes', '', d)}"
 
 # Override default configure step
 do_configure() {

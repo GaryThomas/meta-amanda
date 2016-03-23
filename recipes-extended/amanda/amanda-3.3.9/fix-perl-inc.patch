@@ -1,0 +1,17 @@
+Index: amanda-3.3.9/config/amanda/swig.m4
+===================================================================
+--- amanda-3.3.9.orig/config/amanda/swig.m4
++++ amanda-3.3.9/config/amanda/swig.m4
+@@ -23,7 +23,11 @@ AC_DEFUN([AMANDA_SETUP_SWIG],
+     ])
+ 
+     # get the include path for building perl extensions
+-    PERL_INC=`$PERL -MExtUtils::Embed -e perl_inc`
++    env >/tmp/env.before
++    if test x"$PERL_INC" = x; then
++        PERL_INC=`$PERL -MExtUtils::Embed -e perl_inc`
++    fi
++    env >/tmp/env.after
+     AC_SUBST(PERL_INC)
+ 
+     if test x"$enable_shared" = x"no"; then
