@@ -174,6 +174,8 @@ cd build
 tar -xf ../src/amanda-3.3.9.tgz
 cd amanda-3.3.9
 ../../src/do_amanda_configure
+# Force swig interface files to be rebuilt
+rm perl/Amanda/*.c
 make
 make install
 mv /etc/amanda/amanda-security.conf /etc
