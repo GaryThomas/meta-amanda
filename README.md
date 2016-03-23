@@ -158,7 +158,28 @@ This was tested using **amanda-3.3.9** (the latest available) and either
 
 Should I file a bug on this?
 
+From the testing, the problems are with 32 bit targets built using **bitbake**.
+
 The interesting thing is that these programs (**amanda** and **perl**) are widely used and available in many distributions.  I have tested these combinations on my desktop as well as on my target hardware running **Debian** (**ARM**) or **Ubuntu**
 (**X86-64**) and they always work correctly, with either version of **perl**.  The **OpenEmbedded** versions of these programs are built without any special patches and are patched to the same condition as **Debian** as far as I can tell (i.e. there are no *important* patches missing from the **OE** builds)
 
-I have built **amanda-3.3.9** and **perl-5.22.0** 100% from scratch natively on my i.MX6 target and it works perfectly.  This was using **amanda-3.3.9** unpatched and **perl-5.22.0** with the **Debian/Ubuntu** patches applied as they would be on a desktop version.  The sources used as well as the script used to configure the packages are in **src** in this repo.
+I have built **amanda-3.3.9** and **perl-5.22.1** 100% from scratch natively on my i.MX6 target as well as on genericx86 (running under VirtualBox) and it works perfectly.  This was using **amanda-3.3.9** unpatched and **perl-5.22.1** with the **Debian/Ubuntu** patches applied as they would be on a desktop version.  The sources used as well as the script used to configure the packages are in **src** in this repo.
+
+It turns out that only **amanda** needs to be built directly on the target to make this work.  This means that there is some process (yet to be discovered) which differs when **amanda** is built using **bitbake/OE** than when it is built using self-hosted tools (via **SDK** on the target).
+
+Here are the steps to [re]build **amanda** and test, assuming the `src` directory from this repo:
+```
+mkdir build
+cd build
+tar -xf ../src/amanda-3.3.9.tgz
+cd amanda-3.3.9
+../../src/do_amanda_configure
+make
+make install
+mv /etc/amanda/amanda-security.conf /etc
+mkdir -p /var/amanda/lib/gnutar-lists
+chown amandabackup:amandabackup /var/amanda/lib/gnutar-lists
+```
+then test as before.
+
+I've put the results of the configure step for both environments (built for genericx86) in `results`.  Comparing the files, I find only one significant difference, that of `sizeof(off_t)`.  I tried to adjust this manually and rebuild, but there was no change (perhaps my changes came too late in the configure/build cycle).
