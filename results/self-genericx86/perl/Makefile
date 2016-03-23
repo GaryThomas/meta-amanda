@@ -832,7 +832,7 @@ BSDTCP_SECURITY = yes
 BSDUDP_SECURITY = no
 BSD_SECURITY = no
 CAT = /bin/cat
-CC = gcc
+CC = gcc -m32 -march=core2 -mtune=core2 -msse3 -mfpmath=sse 
 CCDEPMODE = depmode=none
 CFLAGS = -g -O2 -fno-strict-aliasing -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
 CHECK_USERID = 1
